@@ -1,0 +1,22 @@
+p {
+    font-family: Bahnschrift, Georgia, "Times New Roman", "Times New Roman", serif;
+}
+
+a {
+    font-family: Bahnschrift, Georgia, "Times New Roman", "Times New Roman", serif;
+    text-decoration: underline;
+    color: tomato;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: darkred;
+}
+
+body {
+    width: 50%;
+    margin: auto;
+    padding-top: 5%;
+    text-align: center;
+    background-color: lightgray;
+}
