@@ -33,6 +33,37 @@ async function fetchLocation(ip) {
     }
 }
 
+async function fetchCoords(city, region) {
+    try {
+        const response = await fetch(`https://nominatim.openstreetmap.org/search?q=${city},${region}&format=json`);
+        const data = await response.json()
+        console.log(data)
+        const latitude = data[0].lat
+        const longitude = data[0].lon
+        console.log(latitude, longitude)
+        displayCoordinates(latitude, longitude)
+        fetchWeather(latitude, longitude)
+    } catch (error) {
+        console.log("Fout bij ophalen van API (fetchCoords)", error)
+    }
+}
+
+async function fetchWeather(latitude, longitude) {
+    try {
+        const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,wind_speed_10m,rain&forecast_days=1`);
+        const data = await response.json()
+        console.log(data)
+        // let temperature = data[object.current].temperature_2m
+        const temperature = data.current.temperature_2m
+        const rain = data.current.rain
+        const wind = data.current.wind_speed_10m
+        console.log(temperature, rain, wind)
+        displayWeather(temperature, rain, wind)
+    } catch (error) {
+        console.log("Fout bij ophalen van API (fetchWeather)", error)
+    }
+}
+
 function displayIp(data) {
     const container = document.querySelector("#pIp");
     container.innerHTML = data.ip;
