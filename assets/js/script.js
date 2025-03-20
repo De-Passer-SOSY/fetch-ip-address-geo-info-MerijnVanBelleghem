@@ -74,7 +74,12 @@ function displayLocation(data) {
     container.innerHTML = data.city + ", " + data.region + ", " + data.country;
 }
 
-function displayCoordinates(data) {
+function displayCoordinates(latitude, longitude) {
     const container = document.querySelector("#pCoordinates");
-    container.innerHTML = data.loc;
+    container.innerHTML = latitude + ", " + longitude;
+}
+
+function displayWeather(temperature, rain, wind) {
+    const container = document.querySelector("#pWeather");
+    container.innerHTML = "Temperatuur: " + temperature + "°C, Regen: " + rain + "mm, Wind: " + wind + "km/h";
 }
